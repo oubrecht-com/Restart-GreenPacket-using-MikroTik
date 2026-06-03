@@ -10,16 +10,16 @@ In this script are:
 **Username:** admin  
 **Password:** MyPassword  
 
-This script will automatically create the file `gp-login.txt` and temporary script `gp-token`. MikroTik has a lot of limits and I didn't find a better solution for it.
+This script will automatically create the file `gp-login.txt` and a temporary script `gp-token`. MikroTik has a lot of limits and I didn't find a better solution for it.
 
 **How it works:**
-1. Log in to GreenPacket
+1. Log in to GreenPacket router
 2. Get token from response
 3. Prepare temporary script with token data
 4. Call reboot with token
 
 **Installation:**  
-Create new script in your MikroTik with name `gp-reboot` and insert this code (in Winbox):
+Create a new script in your MikroTik with name `gp-reboot` and insert this code (in Winbox):
 
 ```bash
 /system/script remove [find name="gp-token"]
@@ -43,7 +43,8 @@ Create new script in your MikroTik with name `gp-reboot` and insert this code (i
   
 
 **Another recommended script for watchdog**  
-Create new scheduled task (in Scheduler) with name `gp-watchdog` and insert this code (in Winbox):
+This script tests your internet connection and if it is lost, it will reboot the GreenPacket router.  
+Create a new scheduled task (in Scheduler) with name `gp-watchdog` and insert this code (in Winbox):
 ```bash
 :if ([/ping 8.8.8.8 interval=3 count=10] = 0) do={
   :log info "Watchdog: restart GP - no ping"
