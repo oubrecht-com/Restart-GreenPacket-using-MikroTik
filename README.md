@@ -36,5 +36,21 @@ Create new script in your MikroTik with name `gp-reboot` and insert this code (i
 :log info "GP reboot request sent"
 ```
 
+![gp-reboot script](gp-reboot.png)
+  
+  
+  
+  
 
+**Another recommended script for watchdog**  
+Create new scheduled task (in Scheduler) with name `gp-watchdog` and insert this code (in Winbox):
+```bash
+:if ([/ping 8.8.8.8 interval=3 count=10] = 0) do={
+  :log info "Watchdog: restart GP - no ping"
+  /system/script run gp-reboot
+}
+```
 
+Interval (every 5 minutes): 00:05:00
+
+![gp-watchdog script](gp-watchdog.png)
