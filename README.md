@@ -1,7 +1,7 @@
 # Restart GreenPacket using MikroTik
 
 **Tested with:**
-- GreenPacket H5-200Q1
+- GreenPacket H5-200Q1, FV: 912.001.604.145
 - MikroTik ROS v7.23
 
 Change GreenPacket's **IP**, **username** and **password** in your script.
